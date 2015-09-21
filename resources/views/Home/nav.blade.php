@@ -19,7 +19,7 @@
           
            <ul class="nav navbar-nav navbar-right">
             @if (Auth::check())
-               <li><a href="/user/{{Auth::id()}}/articles">hello　{{Auth::user()->name}}</a></li>
+               <li><a href="/user/{{Auth::id()}}">hello　{{Auth::user()->name}}</a></li>
                <li><a href="/auth/logout">退出</a></li>
                @else
                <li><a data-toggle="modal" data-target="#login_modal">登陆</a></li>

@@ -10,27 +10,7 @@
          <div class="main">
          <div class="container">
              <div class="row">
-                 <div class="col-md-3 part-left">
-                     <div class="picname">
-                          <a href=""><img src="/img/pic.png"></img></a>
-                          <ul class="list-inline list-case">
-                              <li><a href=""><strong></strong>关注</a></li>
-                              <li><a href=""><strong></strong>粉丝</a></li>
-                          </ul>
-                     </div>
-                     <dl class="dl-horizontal">
-                         <dt>　用户id:</dt>
-                         <dd></dd>
-                         <dt>　用户名:</dt>
-                         <dd></dd>
-                         <dt>　创建时间:</dt>
-                         <dd></dd>
-                         
-                     </dl>
-                     <div class="catory">
-                         目录分类
-                     </div>
-                 </div>
+                @include('article.right')
                  <div class="col-md-9">
                      <div class="part-right">
                          

@@ -53,7 +53,6 @@ class ArticleController extends Controller
         $followed_count=$this->followed($id);
         $Articles=User::find($id)->hasManyArticles;
         $articleTotal=count($Articles);
-        //dd($articleTotal);
         return view('article.index',array(
             'following_count'=>$following_count,
             'followed_count'=>$followed_count,
@@ -124,12 +123,20 @@ class ArticleController extends Controller
      * @return Response
      */
     public function showArticle($aid)
-    {
+    {   
+        $id=Auth::id();
+        $following_count=$this->following($id);
+        $followed_count=$this->followed($id);
+        $users=User::find($id);
         $articles=Article::where('aid',$aid)->get();
-        //$Categorys=User::find($id)->showCategory;
+        $Categorys=User::find($id)->hasManyCategorys;
        return view('article.show',array(
            'articles_title'=>$articles[0]->title,
-           'articles_content'=>EndaEditor::MarkDecode($articles[0]->content)
+           'articles_content'=>EndaEditor::MarkDecode($articles[0]->content),
+           'following_count'=>$following_count,
+           'followed_count'=>$followed_count,
+           'users'=>$users,
+           'Categorys'=>$Categorys
            ));
     }
 
