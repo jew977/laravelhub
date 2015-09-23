@@ -42,7 +42,7 @@ class ArticleController extends Controller
     
     
     public function following($id){
-        $following=User::where('id','=',$id)->find($id)->showFollowing;
+        $following=User::find($id)->showFollowing;
         $following_count=count($following);
         return $following_count;
     }
@@ -130,11 +130,11 @@ class ArticleController extends Controller
      */
     public function showArticle($aid)
     {   
-        $id=Auth::id();
+        $articles=Article::where('aid',$aid)->get();
+        $id=$articles->toArray()[0]['userid']; //通过文章的id查找属于用户的id
         $following_count=$this->following($id);
         $followed_count=$this->followed($id);
         $users=User::find($id);
-        $articles=Article::where('aid',$aid)->get();
         $Categorys=User::find($id)->hasManyCategorys;
        return view('article.show',array(
            'articles_title'=>$articles[0]->title,

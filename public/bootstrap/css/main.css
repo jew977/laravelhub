@@ -425,7 +425,7 @@ margin-top: 0px;
 
 .list_case{
     margin-bottom: 10px;
-    margin-top: 10px;  
+    margin-top: 5px;  
 }
 .btn-cancle{
    background:#eea236;
@@ -433,4 +433,7 @@ margin-top: 0px;
 }
 .list_case a{
  color:#fff;
+}
+.list_case a:hover {
+    color: #fff;
 }

@@ -41,12 +41,12 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Article','userid','id');
     }
     public function showFollowing(){
-       // return $this->belongsToMany('App\User', 'attention', 'user1_id', 'user2_id');
-        return $this->hasMany('App\Attention','user1_id');
+        return $this->belongsToMany('App\User', 'attention', 'user1_id', 'user2_id');
+        //return $this->hasMany('App\Attention','user1_id');
     }
     public function showFollowed(){
-        //return $this->belongsToMany('App\User', 'attention', 'user2_id', 'user1_id');
-        return $this->hasMany('App\Attention','user2_id');
+        return $this->belongsToMany('App\User', 'attention', 'user2_id', 'user1_id');
+        //return $this->hasMany('App\Attention','user2_id');
     }
     public function hasManyCategorys(){
         return $this->hasMany('App\Category','userid','id');

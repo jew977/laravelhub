@@ -85,25 +85,22 @@ class UserController extends Controller
         //
     }
     public function post_case(Request $request){
-       
         $user1_id=Auth::id();//关注id
         $user2_id=$request->user2_id;//被关注id*/
         $attention=Attention::where('user1_id',$user1_id)
         ->where('user2_id',$user2_id)
         ->first();
-        //return $attention;
         if(empty($attention)){
-         Attention::insert(array(
-            'user1_id'=>$user1_id,
-            'user2_id'=>$user2_id
-            ));
-            return response()->json(array(
-            'status' => 1
-             ));
-       }else{
-           
-       return '已关注';
-       }
+             Attention::insert(array(
+                'user1_id'=>$user1_id,
+                'user2_id'=>$user2_id
+                ));
+        return response()->json(array(
+                'status' => 1
+                 ));
+           }else{
+           return '已关注';
+           }
     }
 
 }

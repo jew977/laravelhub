@@ -14,6 +14,7 @@
                 <div class="pull-right list_case">
                    
                   <div>
+                 
                 @if($attention)
                   <a id="case_me" class="btn btn-cancle btn-lg">已关注</a>
                    @else
@@ -21,6 +22,7 @@
                   @endif
                    <a href="" class="btn btn-primary btn-lg">@回复我</a>
                   </div>
+                 
                 </div>
              </div>
              <div class="row">
