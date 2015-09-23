@@ -16,9 +16,23 @@
                          <dd>{{$users->created_at}}</dd>
                      </dl>
                      </div>
+                     <!--栏目分类-->
                     <div class="article-slider">
                         <div class="article-header">
                             <h1>栏目分类</h1>
+                        </div>
+                       <div class="category_top">
+                           <ul class="list-group category_header">
+                              @foreach($Categorys as $category)
+                               <li class="list-group-item"><a href="">{{$category->typename}}</a>（22）</li>
+                               @endforeach
+                           </ul>
+                       </div>
+                    </div>
+                    <!--tag分类-->
+                    <div class="article-slider">
+                        <div class="article-header">
+                            <h1>Tag分类</h1>
                         </div>
                        <div class="category_top">
                            <ul class="list-group category_header">

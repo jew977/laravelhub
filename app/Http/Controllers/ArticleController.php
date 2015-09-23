@@ -19,18 +19,24 @@ class ArticleController extends Controller
      * @return Response
      */
     public function index($id)
-    {  
+    {
+       $user1_id=Auth::id();//关注id
+        $user2_id=$id;//被关注id*/
         $articles=User::orderBy('created_at', 'DESC')->find($id)->hasManyArticles()->paginate(6);//列表分页
         $users=User::find($id);
         $following_count=$this->following($id);
         $followed_count=$this->followed($id);
         $Categorys=User::find($id)->hasManyCategorys;
+        $attention=Attention::where('user1_id',$user1_id)
+        ->where('user2_id',$user2_id)
+        ->first();
         return view('article.list',array(
             'articles'=>$articles,
             'users'=>$users,
             'following_count'=>$following_count,
             'followed_count'=>$followed_count,
-            'Categorys'=>$Categorys
+            'Categorys'=>$Categorys,
+            'attention'=>$attention
             )); 
     }
     

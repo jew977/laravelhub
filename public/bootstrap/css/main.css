@@ -174,7 +174,7 @@ width: 700px;
     color:#0DB836;
 }
 .main{
-    padding-top:100px;
+    padding-top:60px;
     margin-bottom:20px;
     
 }
@@ -421,4 +421,16 @@ background: #f5f5f5;
 font: 400 26px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
 color: #444443;   
 margin-top: 0px;
+}
+
+.list_case{
+    margin-bottom: 10px;
+    margin-top: 10px;  
+}
+.btn-cancle{
+   background:#eea236;
+   border-color: #eea236;
+}
+.list_case a{
+ color:#fff;
 }

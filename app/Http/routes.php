@@ -30,11 +30,12 @@ Route::get('auth/callback', 'Auth\AuthController@callback');
 Route::get('user/{id}','ArticleController@index');
 Route::get('article/{id}','ArticleController@showArticle')->where('id', '[0-9]+');
 
-Route::group(['middleware'=>'auth'], function () {
+Route::group(['middleware'=>'Permission'], function () {
 
 Route::get('home','ArticleController@showController');
 Route::get('article/create','ArticleController@create');
 Route::post('article/create','ArticleController@store');
 Route::get('article/{id}/edit','ArticleController@edit');
 Route::DELETE('article/delete/{id}','ArticleController@destroy');
+Route::post('/post_case/{id}','UserController@post_case');
 });
