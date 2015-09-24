@@ -24,8 +24,21 @@
                        <div class="category_top">
                            <ul class="list-group category_header">
                               @foreach($Categorys as $category)
-                               <li class="list-group-item"><a href="">{{$category->typename}}</a>（22）</li>
+                               <li class="list-group-item"><a href="{{$category->id}}">{{$category->typename}}</a></li>
                                @endforeach
+                           </ul>
+                       </div>
+                    </div>
+                    <!--近期文章-->
+                    <div class="article-slider">
+                        <div class="article-header">
+                            <h1>近期文章</h1>
+                        </div>
+                       <div class="category_top">
+                           <ul class="list-group category_header">
+                          @foreach($lastArticles as $lastArticle)
+                               <li class="list-group-item"><a href="/article/{{$lastArticle->aid}}">{{$lastArticle->title}}</a></li>
+                          @endforeach
                            </ul>
                        </div>
                     </div>
@@ -44,3 +57,4 @@
                     </div>
                     <div class="myad"></div>
 </div>
+

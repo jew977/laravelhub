@@ -398,8 +398,8 @@ display: inline-block;
 margin-right: 8px;
 padding: 10px 10px;
 margin: 0px 0px 10px 5px;
-background: #585353;
-    border-radius: 6px;
+background: #777676;
+border-radius: 6px;
 }
 .category_title a{
 color:#fff;
@@ -421,6 +421,7 @@ background: #f5f5f5;
 font: 400 26px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
 color: #444443;   
 margin-top: 0px;
+padding: 3px 20px;
 }
 
 .list_case{

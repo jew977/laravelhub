@@ -12,7 +12,7 @@ class Category extends Model
     public function category_belongsToMany_user(){
         return $this->belongsToMany('App\User','id','typeid');
     }
-    public function show_category_articles(){
+    public function Category_hasMany_Articles(){
         return $this->hasMany('App\Article','typeid');
     }
 }

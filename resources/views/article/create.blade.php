@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row blog-title">
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="title" required="required" placeholder="博客标题">
+                        <input type="text" class="form-control" name="title" required="required" placeholder="博客标题:夕阳下奔跑的少年">
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary form-control" id="publish" data-toggle="modal" data-target="#fabumodal">发表博客</button>

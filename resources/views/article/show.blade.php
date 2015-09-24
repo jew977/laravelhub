@@ -9,6 +9,7 @@
          @include('Home.nav')
          <div class="main">
          <div class="container">
+             @include('article.case')
              <div class="row">
                 @include('article.right')
                  <div class="col-md-9">

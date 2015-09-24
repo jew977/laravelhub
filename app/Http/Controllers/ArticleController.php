@@ -20,39 +20,47 @@ class ArticleController extends Controller
      */
     public function index($id)
     {
-       $user1_id=Auth::id();//关注id
+        $user1_id=Auth::id();//关注id
         $user2_id=$id;//被关注id*/
         $articles=User::orderBy('created_at', 'DESC')->find($id)->hasManyArticles()->paginate(6);//列表分页
         $users=User::find($id);
         $following_count=$this->following($id);
         $followed_count=$this->followed($id);
         $Categorys=User::find($id)->hasManyCategorys;
-        $attention=Attention::where('user1_id',$user1_id)
+        //dd($Categorys);
+        $attention=Attention::where('user1_id',$user1_id) //互相关注
         ->where('user2_id',$user2_id)
         ->first();
+
+        $lastArticles=$this->lastPublicArticles($id);//获取最近的发表的6篇文章
+        //dd($lastArticles);
         return view('article.list',array(
             'articles'=>$articles,
             'users'=>$users,
             'following_count'=>$following_count,
             'followed_count'=>$followed_count,
             'Categorys'=>$Categorys,
-            'attention'=>$attention
+            'attention'=>$attention,
+            'lastArticles'=>$lastArticles
             )); 
     }
     
-    
+    //主动关注
     public function following($id){
         $following=User::find($id)->showFollowing;
         $following_count=count($following);
         return $following_count;
     }
-    
+    //被动关注
     public function followed($id){
         $followed=User::where('id',$id)->find($id)->showFollowed;
         $followed_count=count($followed);
         return $followed_count;
     }
-    
+    public function hasMany_articles_total($id){
+        dd(Category::find(1));
+    }
+    //主控制页面
     public function showController(){
         $id=Auth::id();
         $following_count=$this->following($id);
@@ -66,6 +74,11 @@ class ArticleController extends Controller
             'articles'=>$Articles
             ));//home控制面板
         
+    }
+    //近期文章
+    public function lastPublicArticles($userid){
+    $lastArticles=User::orderBy('created_at', 'DESC')->find($userid)->hasManyArticles->take(6);
+    return $lastArticles;
     }
     /**
      * Show the form for creating a new resource.
@@ -90,7 +103,14 @@ class ArticleController extends Controller
             $category=new Category();
             $category->typename=$request->typename;
             $category->userid=Auth::id();
-            $category->save();
+            $catefory_result=Category::where('typename',$category->typename)
+            ->where('userid',$category->userid)
+            ->first();
+            if(!$catefory_result){
+
+                $category->save();
+            }
+ 
         //dd($category->id);
        //插入数据库
       $rules=[
@@ -107,7 +127,7 @@ class ArticleController extends Controller
               'desc'=>$request->desc,
               'userid'=>Auth::id(),
               'author'=>Auth::user()->name,
-              'typeid'=>$category->id
+              'typeid'=>$catefory_result->id
               ];
 
            $validator = Validator::make($request->all(),$rules);
@@ -130,19 +150,27 @@ class ArticleController extends Controller
      */
     public function showArticle($aid)
     {   
+        $user1_id=Auth::id();//关注id
+        $user2_id=$aid;//被关注id*/
         $articles=Article::where('aid',$aid)->get();
         $id=$articles->toArray()[0]['userid']; //通过文章的id查找属于用户的id
         $following_count=$this->following($id);
         $followed_count=$this->followed($id);
         $users=User::find($id);
         $Categorys=User::find($id)->hasManyCategorys;
+        $attention=Attention::where('user1_id',$user1_id)
+        ->where('user2_id',$user2_id)
+        ->first();
+        $lastArticles=$this->lastPublicArticles($id);//获取最近的发表的6篇文章
        return view('article.show',array(
            'articles_title'=>$articles[0]->title,
            'articles_content'=>EndaEditor::MarkDecode($articles[0]->content),
            'following_count'=>$following_count,
            'followed_count'=>$followed_count,
            'users'=>$users,
-           'Categorys'=>$Categorys
+           'Categorys'=>$Categorys,
+           'attention'=>$attention,
+           'lastArticles'=>$lastArticles
            ));
     }
 

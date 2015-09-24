@@ -12,3 +12,6 @@ $(document).ready(function(){
         },1000);
     }
 });
+
+//目录文章总数
+
